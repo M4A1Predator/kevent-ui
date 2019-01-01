@@ -1,0 +1,6 @@
+<div>
+  <div class="container">
+    <app-login-form (login)="onLogin($event)"></app-login-form>
+    {{ attemps | async | json }}
+  </div>
+</div>
