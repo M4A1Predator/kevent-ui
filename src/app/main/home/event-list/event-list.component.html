@@ -1,5 +1,5 @@
 <div>
   <div class="list-content">
-    <app-event-item></app-event-item>
+    <app-event-item *ngFor="let event of events" [event]="event"></app-event-item>
   </div>
 </div>

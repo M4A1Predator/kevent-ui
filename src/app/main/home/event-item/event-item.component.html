@@ -1,17 +1,25 @@
 <div class="event">
   <div class="event-cover">
-    <img class="event-cover-img" src="https://pbs.twimg.com/media/D2_b2NUVYAEO8FX.jpg:large" />
+    <!-- <img class="event-cover-img" src="https://pbs.twimg.com/media/D2_b2NUVYAEO8FX.jpg:large" /> -->
+    <img class="event-cover-img" *ngIf="coverUrl" [src]="coverUrl" />
   </div>
   <div class="event-detail">
     <div>
-      <span class="event-name">
-        Name
-      </span>
+      <a [routerLink]="['events', event.id]">
+        <div class="event-name">
+          Name {{event.name}}
+        </div>
+      </a>
     </div>
     <div class="event-des">
-      Desc
+      Desc {{event.description}}
     </div>
-    <div class="event-des">Location</div>
-    <div>Time</div>
+    <div class="event-des">Location {{event.location}}</div>
+    <div>Time {{event.performTime}}</div>
+    <div class="artist-tag-list">
+      <span class="artist-tag" *ngFor="let ea of event.eventArtistList">
+        {{ea.name}}
+      </span>
+    </div>
   </div>
 </div>
