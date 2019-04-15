@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EventModel } from '../../models/EventModel';
 import { EventsService } from '../../event/events.service';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-event-item',
@@ -11,6 +12,7 @@ export class EventItemComponent implements OnInit {
 
   @Input()
   event: EventModel
+  performDateStr: string = "N/A"
 
   coverUrl = null
 
@@ -28,5 +30,8 @@ export class EventItemComponent implements OnInit {
         console.error(err);
       })
     }
+
+    const performDateM = moment(this.event.performTime)
+    this.performDateStr = performDateM.format("D-MMM-YYYY")
   }
 }
