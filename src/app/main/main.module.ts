@@ -6,9 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { EventListComponent } from './home/event-list/event-list.component';
 import { EventItemComponent } from './home/event-item/event-item.component';
+import { EventPageComponent } from './event/event-page/event-page.component';
 
 @NgModule({
-  declarations: [HomeComponent, EventListComponent, EventItemComponent],
+  declarations: [HomeComponent, EventListComponent, EventItemComponent, EventPageComponent],
   imports: [
     CommonModule,
     SharedModule,

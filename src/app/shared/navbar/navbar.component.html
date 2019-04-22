@@ -57,6 +57,9 @@
           </ng-template>
         </ul> -->
       </div>
+      <form (keydown.enter)="$event.preventDefault()" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-3" type="search" placeholder="Search Events..." aria-label="Search">
+      </form>
     </div>
   </nav>
   

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,13 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
-  public getEvents(): Observable<any> {
+  public getComingEvents(): Observable<any> {
     const option = {}
-    return this.http.get(`${environment.API_URL}/events/public`, option)
+    const params: HttpParams = new HttpParams({})
+      .set("page", "1")
+      .set("pageSize", "5");
+    
+    return this.http.get(`${environment.API_URL}/events/public?${params.toString()}`, option)
   }
 
   public getCover(eventId: number) {
@@ -20,6 +24,10 @@ export class EventsService {
       responseType: 'blob' as 'json',
     }
     return this.http.get<Blob>(`${environment.API_URL}/events/${eventId}/cover`, option)
+  }
+
+  public getEvent(eventId: number): Observable<any> {
+    return this.http.get(`${environment.API_URL}/events/public/${eventId}`)
   }
 
 }
