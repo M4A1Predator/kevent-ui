@@ -1,0 +1,26 @@
+<div>
+  <div class="event-item">
+    <div class="event-cover">
+      <img class="event-cover-img" src="https://colorlib.com/preview/theme/force/img/blog/l-news/l-news-1.jpg" />
+    </div>
+    <div class="event-body">
+      <div class="event-text">
+        <div>
+          <h4>Name</h4>
+        </div>
+        <div>
+          <p>Description</p>
+        </div>
+        <div class="event-tags">
+          <a class="gadget">Concert</a>
+          <a>
+            <!-- <fa-icon [icon]="faCalendar"></fa-icon>  -->
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            15 May 2019
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-event-item *ngFor="let event of events" [event]="event"></app-event-item>
+</div>

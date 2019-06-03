@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
   getEvents() {
     this.eventsService.getComingEvents().subscribe((res: EventModel[]) => {
-      console.log(res);
       this.events = res
     })
   }

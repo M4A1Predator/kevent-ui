@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { loadData } from './local-storage/storage';
 import { SharedModule } from './shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const metaReducers: MetaReducer<any>[] = [debug];
 
