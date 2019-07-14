@@ -4,7 +4,9 @@ export class EventModel {
   public location: string
   public description: string
   public performTime: string
+  public performDateTimeList: any[]
   public ticketStartTime: string
   public ticketEndTime: string
   public coverPath: string
+  public eventArtistList: any[]
 }

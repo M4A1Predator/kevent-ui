@@ -12,13 +12,14 @@ export class EventItemComponent implements OnInit {
 
   @Input()
   event: EventModel
-  performDateStr: string = "N/A"
+  performDateStrs: string[] = []
 
   coverUrl = null
 
   constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
+    // get cover
     if (this.event.coverPath) {
       this.eventsService.getCover(this.event.id).subscribe((res: Blob) => {
         const f = new FileReader()
@@ -31,7 +32,13 @@ export class EventItemComponent implements OnInit {
       })
     }
 
-    const performDateM = moment(this.event.performTime)
-    this.performDateStr = performDateM.format("D-MMM-YYYY")
+    // datetimes
+    this.performDateStrs = this.event.performDateTimeList.map(p => {
+      const performDateM = moment(this.event.performTime)
+      return performDateM.format("D-MMM-YYYY")
+    })
+
+    // artists
+    this.event.eventArtistList
   }
 }

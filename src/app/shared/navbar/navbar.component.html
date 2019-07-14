@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['']">Kevent</a>
+      <!-- <a class="navbar-brand" [routerLink]="['']">Kevent</a> -->
+      <a class="navbar-brand" [routerLink]="['']">
+        <img src="/assets/logo_white.png" height="40" alt="">
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -17,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['events']">Events</a>
+            <a class="nav-link" [routerLink]="['events']">EVENTS</a>
           </li>
         </ul>
         <!-- <ul class="navbar-nav ml-auto">
@@ -58,7 +61,7 @@
         </ul> -->
       </div>
       <form (keydown.enter)="$event.preventDefault()" class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-3" type="search" placeholder="Search Events..." aria-label="Search">
+        <input class="form-control mr-sm-3 search" type="search" placeholder="Search Events..." aria-label="Search">
       </form>
     </div>
   </nav>
