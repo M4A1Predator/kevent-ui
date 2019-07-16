@@ -2,16 +2,28 @@
   <div class="container">
     <div *ngIf="event">
       <div class="row">
-        {{event.name}}
+        <div class="col-md-12 coverRow">
+          <img *ngIf="coverUrl; else unknownCover" class="cover-img" src="{{ coverUrl }}" />
+          <ng-template #unknownCover>
+            <img class="cover-img" src="/assets/unknown.jpg" />
+          </ng-template>
+        </div>
       </div>
       <div class="row">
-        {{event.description}}
+        <h1>{{ event.name }}</h1>
       </div>
       <div class="row">
-        {{event.performTime}}
+        {{ event.description }}
       </div>
       <div class="row">
-
+        <a *ngFor="let performDateStr of performDateStrs">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          &nbsp;
+          <span>{{ performDateStr }}</span>
+        </a>
+      </div>
+      <div class="row">
+        <p class="location-text"><i class="fas fa-map-marker"></i> {{event.location}}</p>
       </div>
     </div>
   </div>
