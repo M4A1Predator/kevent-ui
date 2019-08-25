@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { EventModel } from '../../models/EventModel';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment'
+import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item';
 
 @Component({
   selector: 'app-event-page',
@@ -16,9 +17,10 @@ export class EventPageComponent implements OnInit {
 
   private event: EventModel = null
   private coverUrl: string = null
-  performDateStrs: string[] = [];
+  performDateStrs: string[] = []
+  breadcumb: BreadCumbItem[] = []
 
-  constructor(private eventsService: EventsService, private route:ActivatedRoute) { }
+  constructor(private eventsService: EventsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.pipe(flatMap(params => {
@@ -38,6 +40,17 @@ export class EventPageComponent implements OnInit {
         return performDateM.format("D-MMM-YYYY")
       })
     })
+
+    this.breadcumb = [
+      {
+        label: 'Events',
+        url: '/events'
+      } as BreadCumbItem,
+      {
+        label: 'Name',
+        url: '/events/id'
+      } as BreadCumbItem,
+    ]
   }
 
 }

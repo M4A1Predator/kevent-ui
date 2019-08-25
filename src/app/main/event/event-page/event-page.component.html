@@ -1,5 +1,6 @@
 <app-layout>
   <div class="container">
+    <app-breadcumb [items]="breadcumb"></app-breadcumb>
     <div *ngIf="event">
       <div class="row">
         <div class="col-md-12 coverRow">
@@ -10,21 +11,69 @@
         </div>
       </div>
       <div class="row">
-        <h1>{{ event.name }}</h1>
+        <h1>TWICE World Tour 2019</h1>
       </div>
       <div class="row">
-        {{ event.description }}
+        กลับมาอีกครั้งสำหรับ TWICE Asia Tour เริ่มต้นที่ไทยเหมือนเดิม เตรียมใจเตรียมเงินกันให้พร้อม
       </div>
+      <div class="event-info">
+        <div>
+          <div class="location-text"><strong>Location</strong></div>
+          <p><i class="fas fa-map-marker"></i> {{event.location}}</p>
+        </div>
+        <div><strong>รอบการแสดง</strong></div>
+        <div>
+          <div>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <a>
+              &nbsp;
+              <span>10-Sep-2019 18:00</span>
+            </a>,
+            <a>
+              &nbsp;
+              <span>11-Sep-2019 18:00</span>
+            </a>
+          </div>
+        </div>
+        <br />
+        <!-- ticket selling -->
+        <div><strong>Ticket Selling</strong></div>
+        <div>
+          <i class="fas fa-shopping-cart"></i>
+          <a>
+            &nbsp;
+            <span>30-Aug-2019 11:00</span>
+          </a>,
+          <a>
+            &nbsp;
+            <span>30-Aug-2019 11:00</span>
+          </a>
+        </div>
+        <!-- end ticket selling -->
+        <!-- ticket price -->
+        <div><strong>Price</strong></div>
+        <div>
+          <a>
+            <i class="fas fa-dollar-sign"></i>&nbsp;
+            <span>
+              6,000 / 5,500(Stand) / 4,500 THB
+            </span>
+          </a>
+        </div>
+        <!-- end ticket price -->
+        <!-- zone -->
+        <div>
+          <a href="#">
+            <img class="zone-img" src="/assets/unknown.jpg" />
+          </a>
+        </div>
+        <!-- end zone -->
+      </div>
+      <!-- Content -->
       <div class="row">
-        <a *ngFor="let performDateStr of performDateStrs">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-          &nbsp;
-          <span>{{ performDateStr }}</span>
-        </a>
+        <div>Content</div>
       </div>
-      <div class="row">
-        <p class="location-text"><i class="fas fa-map-marker"></i> {{event.location}}</p>
-      </div>
+      <!-- end Content -->
     </div>
   </div>
 </app-layout>

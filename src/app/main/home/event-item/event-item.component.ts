@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { EventModel } from '../../models/EventModel';
-import { EventsService } from '../../event/events.service';
+import { Component, OnInit, Input } from '@angular/core'
+import { EventModel } from '../../models/EventModel'
+import { EventsService } from '../../event/events.service'
 import * as moment from 'moment'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-event-item',
@@ -9,6 +10,8 @@ import * as moment from 'moment'
   styleUrls: ['./event-item.component.styl']
 })
 export class EventItemComponent implements OnInit {
+
+  faShoppingCart = faShoppingCart
 
   @Input()
   event: EventModel

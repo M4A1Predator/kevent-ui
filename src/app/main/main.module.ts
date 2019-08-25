@@ -16,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     SharedModule,
-    MainRoutingModule
+    MainRoutingModule,
+    // FontAwesomeModule
   ]
 })
 export class MainModule { }
