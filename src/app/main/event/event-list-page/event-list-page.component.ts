@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { EventModel } from '../../models/EventModel'
+import { EventsService } from '../events.service'
+import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item';
 
 @Component({
   selector: 'app-event-list-page',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventListPageComponent implements OnInit {
 
-  constructor() { }
+  events: EventModel[]
+  breadcumb: BreadCumbItem[]
+
+  constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
+    this.getEvents()
+    this.breadcumb = [
+      {
+        label: 'Events',
+        url: '/events'
+      } as BreadCumbItem
+    ]
+  }
+
+  getEvents() {
+    this.eventsService.getComingEvents().subscribe((res: EventModel[]) => {
+      this.events = res
+    })
   }
 
 }

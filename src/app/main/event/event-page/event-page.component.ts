@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { EventsService } from '../events.service';
-import { ActivatedRoute } from '@angular/router';
-import { flatMap, mergeMap, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { EventModel } from '../../models/EventModel';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from '@angular/core'
+import { EventsService } from '../events.service'
+import { ActivatedRoute } from '@angular/router'
+import { flatMap, mergeMap, map } from 'rxjs/operators'
+import { Observable, of } from 'rxjs'
+import { EventModel } from '../../models/EventModel'
+import { environment } from 'src/environments/environment'
 import * as moment from 'moment'
-import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item';
+import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item'
 
 @Component({
   selector: 'app-event-page',
@@ -29,7 +29,6 @@ export class EventPageComponent implements OnInit {
     ).pipe(flatMap(eventId => {
       return this.eventsService.getEvent(eventId)
     })).subscribe(data => {
-      console.log(data)
       this.event = data
       if (data.coverPath) {
         this.coverUrl = `${environment.API_URL}/events/${data.id}/cover`
@@ -39,18 +38,18 @@ export class EventPageComponent implements OnInit {
         const performDateM = moment(this.event.performTime)
         return performDateM.format("D-MMM-YYYY")
       })
-    })
 
-    this.breadcumb = [
-      {
-        label: 'Events',
-        url: '/events'
-      } as BreadCumbItem,
-      {
-        label: 'Name',
-        url: '/events/id'
-      } as BreadCumbItem,
-    ]
+      this.breadcumb = [
+        {
+          label: 'Events',
+          url: '/events'
+        } as BreadCumbItem,
+        {
+          label: `${this.event.name}`,
+          url: `/events/${this.event.id}`
+        } as BreadCumbItem,
+      ]
+    })
   }
 
 }

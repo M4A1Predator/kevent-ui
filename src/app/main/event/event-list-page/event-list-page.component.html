@@ -1,5 +1,11 @@
 <app-layout>
   <div class="container">
-    Events
+    <app-breadcumb [items]="breadcumb"></app-breadcumb>
+    <div class="row">
+      <h1 class="title">All Events</h1>
+    </div>
+    <div class="row">
+      <app-event-list [events]="events"></app-event-list>
+    </div>
   </div>
 </app-layout>
