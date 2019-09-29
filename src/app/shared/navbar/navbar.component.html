@@ -60,8 +60,9 @@
           </ng-template>
         </ul> -->
       </div>
-      <form (keydown.enter)="$event.preventDefault()" class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-3 search" type="search" placeholder="Search Events..." aria-label="Search">
+      <form (keydown.enter)="onSearch($event)" class="form-inline my-2 my-lg-0">
+        <input (input)="onChange($event)" value="{{keyword}}"
+          class="form-control mr-sm-3 search" type="search" placeholder="Search Events..." aria-label="Search" />
       </form>
     </div>
   </nav>

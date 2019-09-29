@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
+import { URL } from 'src/app/constants/url'
+import { SearchParams } from 'src/app/main/models/search-params'
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  keyword = ''
+
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((p: SearchParams) => {
+      this.keyword = p.q
+    })
   }
 
-  onSearch() {}
+  onChange(e: any) {
+    const keyword = e.target.value
+    this.keyword = keyword
+  }
+
+  onSearch(e: any) {
+    e.preventDefault()
+    const queryParams = {
+      q: this.keyword
+    }
+    this.router.navigate([URL.events], { queryParams })
+  }
 
 }

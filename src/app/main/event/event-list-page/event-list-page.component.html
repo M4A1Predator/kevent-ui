@@ -2,10 +2,14 @@
   <div class="container">
     <app-breadcumb [items]="breadcumb"></app-breadcumb>
     <div class="row">
-      <h1 class="title">All Events</h1>
+      <h1 class="title" *ngIf="!keyword; else showKeyword">All Events</h1>
+      <ng-template #showKeyword>
+        <h1 class="title">All Events with Ketword : {{keyword}}</h1>
+      </ng-template>
     </div>
     <div class="row">
       <app-event-list [events]="events"></app-event-list>
     </div>
+    <app-pagination (clickPage)="changePage($event)" [pageable]="pageable"></app-pagination>
   </div>
 </app-layout>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { EventsService } from '../event/events.service';
-import { EventModel } from '../models/EventModel';
+import { Component, OnInit } from '@angular/core'
+import { EventsService } from '../event/events.service'
+import { EventModel } from '../models/EventModel'
+import { EventListResponse } from '../models/event-list-response'
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,8 @@ export class HomeComponent implements OnInit {
   }
 
   getEvents() {
-    this.eventsService.getComingEvents().subscribe((res: EventModel[]) => {
-      this.events = res
+    this.eventsService.getComingEvents().subscribe((res: EventListResponse) => {
+      this.events = res.data
     })
   }
 

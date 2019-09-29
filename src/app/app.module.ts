@@ -50,6 +50,6 @@ const initialState = loadData();
     EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [AuthGuardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
