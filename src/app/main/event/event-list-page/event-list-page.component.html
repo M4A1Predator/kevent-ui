@@ -10,7 +10,7 @@
     <div class="row">
       <app-event-list [events]="events"></app-event-list>
     </div>
-    <ng-template [ngIf]="keyword && !events || !events.length">
+    <ng-template [ngIf]="keyword && (!events || !events.length)">
       <app-events-not-found [keyword]="keyword"></app-events-not-found>
     </ng-template>
     <app-pagination (clickPage)="changePage($event)" [pageable]="pageable"></app-pagination>

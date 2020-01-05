@@ -6,21 +6,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { LayoutComponent } from './layout/layout.component'
 import { FooterComponent } from './footer/footer.component'
 import { BreadcumbComponent } from './components/breadcumb/breadcumb.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'
 import { PaginationComponent } from './components/pagination/pagination.component'
+import { CalDateFormatPipe } from './utils/cal-date-format.pipe'
+import { UtilsService } from './utils/utils.service'
 
 @NgModule({
-  declarations: [NavbarComponent, LayoutComponent, FooterComponent, BreadcumbComponent, PaginationComponent],
+  declarations: [NavbarComponent, LayoutComponent, FooterComponent, BreadcumbComponent, PaginationComponent, CalDateFormatPipe],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     NgbModule
   ],
-  exports: [NavbarComponent, LayoutComponent, BreadcumbComponent, PaginationComponent]
+  exports: [NavbarComponent, LayoutComponent, BreadcumbComponent, PaginationComponent, CalDateFormatPipe]
 })
 export class SharedModule {
   static forRoot() {
-    return { ngModule: SharedModule }
+    return { ngModule: SharedModule, providers: [UtilsService] }
   }
 }

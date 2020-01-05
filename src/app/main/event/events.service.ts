@@ -39,4 +39,8 @@ export class EventsService {
     return this.http.get(`${environment.API_URL}/events/public?${query.toString()}`, option)
   }
 
+  public getZoneImage(eventId: number): Observable<Blob> {
+    return this.http.get<Blob>(`${environment.API_URL}/events/${eventId}/images/zone`)
+  }
+
 }

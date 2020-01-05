@@ -26,9 +26,9 @@ import { loadData } from './local-storage/storage';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-export const metaReducers: MetaReducer<any>[] = [debug];
+export const metaReducers: MetaReducer<any>[] = [debug]
 
-const initialState = loadData();
+const initialState = loadData()
 
 @NgModule({
   declarations: [

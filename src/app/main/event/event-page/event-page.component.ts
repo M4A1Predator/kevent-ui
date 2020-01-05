@@ -7,6 +7,7 @@ import { EventModel } from '../../models/EventModel'
 import { environment } from 'src/environments/environment'
 import * as moment from 'moment'
 import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item'
+import { UtilsService } from 'src/app/shared/utils/utils.service'
 
 @Component({
   selector: 'app-event-page',
@@ -20,7 +21,11 @@ export class EventPageComponent implements OnInit {
   performDateStrs: string[] = []
   breadcumb: BreadCumbItem[] = []
 
-  constructor(private eventsService: EventsService, private route: ActivatedRoute) { }
+  zomeImageData: ArrayBuffer
+
+  constructor(private eventsService: EventsService,
+    private route: ActivatedRoute,
+    private utilsService: UtilsService) { }
 
   ngOnInit() {
     this.route.params.pipe(flatMap(params => {
@@ -30,15 +35,13 @@ export class EventPageComponent implements OnInit {
       return this.eventsService.getEvent(eventId)
     })).subscribe(data => {
       this.event = data
+
+      // get cover
       if (data.coverPath) {
         this.coverUrl = `${environment.API_URL}/events/${data.id}/cover`
       }
 
-      this.performDateStrs = this.event.performDateTimeList.map(p => {
-        const performDateM = moment(this.event.performTime)
-        return performDateM.format("D-MMM-YYYY")
-      })
-
+      // constuct breadcumb
       this.breadcumb = [
         {
           label: 'Events',
@@ -49,6 +52,16 @@ export class EventPageComponent implements OnInit {
           url: `/events/${this.event.id}`
         } as BreadCumbItem,
       ]
+
+      // get zone image
+      this.eventsService.getZoneImage(this.event.id).subscribe(res => {
+        console.log('img' + res);
+        this.utilsService.createImageFromBlob(res).subscribe(img => {
+          this.zomeImageData = img
+          console.log(img);
+        })
+      }, err => {})
+      console.log(this.event);
     })
   }
 

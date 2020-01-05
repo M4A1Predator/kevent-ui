@@ -11,34 +11,52 @@
         </div>
       </div>
       <div class="row">
-        <h1>TWICE World Tour 2019</h1>
+        <h1 class="event-name-title">{{event.name}}</h1>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         กลับมาอีกครั้งสำหรับ TWICE Asia Tour เริ่มต้นที่ไทยเหมือนเดิม เตรียมใจเตรียมเงินกันให้พร้อม
-      </div>
+      </div> -->
       <div class="event-info">
         <div>
-          <div class="location-text"><strong>Location</strong></div>
-          <p><i class="fas fa-map-marker"></i> {{event.location}}</p>
+          <div class="location-text">
+            <span class="info-title">Location</span>
+          </div>
+          <p *ngIf="event.location; else noLocation" 
+            class="info-data"><i class="fas fa-map-marker"></i> {{event.location}}</p>
+          <ng-template #noLocation>TBA</ng-template>
         </div>
-        <div><strong>รอบการแสดง</strong></div>
         <div>
-          <div>
+          <span class="info-title">รอบการแสดง</span>
+        </div>
+        <div>
+          <div class="info-data">
             <i class="fa fa-calendar" aria-hidden="true"></i>
-            <a>
+            <ng-template [ngIf]="!event.performDateTimeList || !event.performDateTimeList.length">
+              TBA
+            </ng-template>
+            <!-- <a>
               &nbsp;
               <span>10-Sep-2019 18:00</span>
             </a>,
             <a>
               &nbsp;
               <span>11-Sep-2019 18:00</span>
-            </a>
+            </a> -->
+            <ng-container *ngFor="let pt of event.performDateTimeList; let i = index">
+              <a>
+                &nbsp;
+                <span>{{pt.datetime | calDateFormat}}</span>
+              </a>
+              <span *ngIf="i+1 < event.performDateTimeList.length">,</span>
+            </ng-container>
           </div>
         </div>
         <br />
         <!-- ticket selling -->
-        <div><strong>Ticket Selling</strong></div>
         <div>
+          <span class="info-title">Ticket Selling</span>
+        </div>
+        <div class="info-data">
           <i class="fas fa-shopping-cart"></i>
           <a>
             &nbsp;
@@ -52,18 +70,21 @@
         <br />
         <!-- end ticket selling -->
         <!-- ticket price -->
-        <div><strong>Price</strong></div>
         <div>
+          <span class="info-title">Price</span>
+        </div>
+        <div class="info-data">
           <a>
             <i class="fas fa-dollar-sign"></i>&nbsp;
-            <span>
-              6,000 / 5,500(Stand) / 4,500 THB
+            <span *ngIf="event.zoneDetail; else noZoneDetail">
+              {{event.zoneDetail}}
             </span>
+            <ng-template #noZoneDetail>-</ng-template>
           </a>
         </div>
         <!-- end ticket price -->
         <!-- zone -->
-        <div>
+        <div class="info-data">
           <a href="#">
             <img class="zone-img" src="/assets/unknown.jpg" />
           </a>
@@ -71,7 +92,7 @@
         <!-- end zone -->
       </div>
       <!-- Content -->
-      <div class="row">
+      <!-- <div class="row">
         <div>
           <p>ประกาศผังที่นั่ง และรายละเอียดบัตรเข้าชมงานคอนเสิร์ต 「2019 BEST OF BEST CONCERT IN BANGKOK」 ที่จะจัดขึ้นในวันเสาร์ที่ 19 ตุลาคม 2562 เวลา 18.00 น. ณ ธันเดอร์โดม เมืองทองธานี
           พบกับสุดยอดไลน์อัพศิลปิน ‘TAEYEON’ (แทยอน), ‘TAEMIN’ (แทมิน) และ ‘SOYOU’ (โซยู) ที่จะมาทำให้งานครั้งนี้เป็นมากกว่าคอนเสิร์ต! มาสนุกไปกับเสียงดนตรี และเข้าถึงอารมณ์เพลงด้วยกัน!!</p>
@@ -82,7 +103,7 @@
           <p>▫️ ราคาบัตร: 6,500 (วีไอพี) / 5,800 (บัตรยืน) / 5,000 / 4,800 (บัตรยืน) / 3,800 / 2,000 บาท</p>
           <p>▫️ เปิดจำหน่ายบัตร: วันอาทิตย์ที่ 1 กันยายน 2562 ตั้งแต่เวลา 10.00 น. เป็นต้นไป ทาง http://go.eventpop.me/BOB-Concert2019</p>
         </div>
-      </div>
+      </div> -->
       <!-- end Content -->
     </div>
   </div>
