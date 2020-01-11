@@ -1,4 +1,5 @@
 import { PerformDateTime } from './perform-datetime'
+import { TicketSelling } from './ticket-selling'
 
 export class EventModel {
   public id: number
@@ -11,4 +12,5 @@ export class EventModel {
   public ticketEndTime: string
   public coverPath: string
   public eventArtistList: any[]
+  public ticketSellingList: TicketSelling[]
 }

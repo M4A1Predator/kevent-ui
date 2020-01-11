@@ -40,7 +40,10 @@ export class EventsService {
   }
 
   public getZoneImage(eventId: number): Observable<Blob> {
-    return this.http.get<Blob>(`${environment.API_URL}/events/${eventId}/images/zone`)
+    const option = {
+      responseType: 'blob' as 'json',
+    }
+    return this.http.get<Blob>(`${environment.API_URL}/events/${eventId}/images/zone`, option)
   }
 
 }

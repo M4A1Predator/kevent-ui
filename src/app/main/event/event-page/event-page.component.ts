@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { EventsService } from '../events.service'
 import { ActivatedRoute } from '@angular/router'
-import { flatMap, mergeMap, map } from 'rxjs/operators'
-import { Observable, of } from 'rxjs'
+import { flatMap } from 'rxjs/operators'
+import { of } from 'rxjs'
 import { EventModel } from '../../models/EventModel'
 import { environment } from 'src/environments/environment'
-import * as moment from 'moment'
 import { BreadCumbItem } from 'src/app/shared/components/breadcumb/breadcumb-item'
 import { UtilsService } from 'src/app/shared/utils/utils.service'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-event-page',
@@ -21,11 +21,12 @@ export class EventPageComponent implements OnInit {
   performDateStrs: string[] = []
   breadcumb: BreadCumbItem[] = []
 
-  zomeImageData: ArrayBuffer
+  zoneImageData: ArrayBuffer
 
   constructor(private eventsService: EventsService,
     private route: ActivatedRoute,
-    private utilsService: UtilsService) { }
+    private utilsService: UtilsService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.route.params.pipe(flatMap(params => {
@@ -35,6 +36,14 @@ export class EventPageComponent implements OnInit {
       return this.eventsService.getEvent(eventId)
     })).subscribe(data => {
       this.event = data
+      this.event.ticketSellingList = this.event.ticketSellingList.map(t => {
+        const converted = { ...t }
+        converted.ticketStartTime = new Date(t.ticketStartTime)
+        if (t.ticketEndTime) {
+          converted.ticketEndTime = new Date(t.ticketEndTime)
+        }
+        return converted
+      })
 
       // get cover
       if (data.coverPath) {
@@ -55,14 +64,24 @@ export class EventPageComponent implements OnInit {
 
       // get zone image
       this.eventsService.getZoneImage(this.event.id).subscribe(res => {
-        console.log('img' + res);
         this.utilsService.createImageFromBlob(res).subscribe(img => {
-          this.zomeImageData = img
-          console.log(img);
+          this.zoneImageData = img
         })
       }, err => {})
-      console.log(this.event);
     })
+  }
+
+  isLink(text: string) {
+    if (!text) {
+      return false
+    }
+    return text.startsWith("http://") || text.startsWith("https://")
+  }
+
+  viewZoneImage(content) {
+    this.modalService.open(content, {windowClass: 'zone-preview-img'})
+      .result.then(res => {}).catch(err => {})
+    document.getElementsByClassName('img-modal')[0]['src'] = this.zoneImageData
   }
 
 }

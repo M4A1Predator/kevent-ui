@@ -15,6 +15,10 @@ export class UtilsService {
     return performDateM.format("D-MMM-YYYY")
   }
 
+  public convertISODateTimeToDate(isoFormat: string): Date {
+    return moment(isoFormat).toDate()
+  }
+
   public createImageFromBlob(image: Blob): Observable<any> {
     const reader = new FileReader()
     return new Observable(observable => {

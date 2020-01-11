@@ -10,7 +10,7 @@
           </ng-template>
         </div>
       </div>
-      <div class="row">
+      <div class="row event-name-div">
         <h1 class="event-name-title">{{event.name}}</h1>
       </div>
       <!-- <div class="row">
@@ -34,14 +34,6 @@
             <ng-template [ngIf]="!event.performDateTimeList || !event.performDateTimeList.length">
               TBA
             </ng-template>
-            <!-- <a>
-              &nbsp;
-              <span>10-Sep-2019 18:00</span>
-            </a>,
-            <a>
-              &nbsp;
-              <span>11-Sep-2019 18:00</span>
-            </a> -->
             <ng-container *ngFor="let pt of event.performDateTimeList; let i = index">
               <a>
                 &nbsp;
@@ -57,15 +49,20 @@
           <span class="info-title">Ticket Selling</span>
         </div>
         <div class="info-data">
-          <i class="fas fa-shopping-cart"></i>
-          <a>
-            &nbsp;
-            <span>30-Aug-2019 11:00</span>
-          </a>,
-          <a>
-            &nbsp;
-            <span>30-Aug-2019 11:00</span>
-          </a>
+          <div *ngFor="let ticketSelling of event.ticketSellingList; let i = index">
+            <span>
+              <i class="fas fa-shopping-cart"></i>
+              &nbsp;
+              <a *ngIf="isLink(ticketSelling.approach); else normalApproach" [href]="ticketSelling.approach">{{ticketSelling.approach}}</a>
+              <ng-template #normalApproach><a>{{ticketSelling.approach}}</a></ng-template>
+            </span>
+            <div class="ticket-selling-time-text">
+              <span>{{ticketSelling.ticketStartTime | calDateFormat}}</span>
+              <ng-container *ngIf="ticketSelling.ticketEndTime">
+                - <span>{{ticketSelling.ticketEndTime | calDateFormat}}</span>
+              </ng-container >
+            </div>
+          </div>
         </div>
         <br />
         <!-- end ticket selling -->
@@ -85,8 +82,11 @@
         <!-- end ticket price -->
         <!-- zone -->
         <div class="info-data">
-          <a href="#">
-            <img class="zone-img" src="/assets/unknown.jpg" />
+          <a>
+            <img *ngIf="zoneImageData; else noZoneImage" class="zone-img" [src]="zoneImageData" (click)="viewZoneImage(zoneImgModal)" />
+            <ng-template #noZoneImage>
+              <img class="zone-img" src="/assets/unknown.jpg" />
+            </ng-template>
           </a>
         </div>
         <!-- end zone -->
@@ -107,4 +107,14 @@
       <!-- end Content -->
     </div>
   </div>
+  <!-- The Modal -->
+  <ng-template #zoneImgModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Zone</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <img class="modal-content img-modal" />
+  </ng-template>
 </app-layout>
