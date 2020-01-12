@@ -68,6 +68,9 @@ export class EventPageComponent implements OnInit {
           this.zoneImageData = img
         })
       }, err => {})
+
+      console.log(this.event);
+      
     })
   }
 
@@ -78,10 +81,16 @@ export class EventPageComponent implements OnInit {
     return text.startsWith("http://") || text.startsWith("https://")
   }
 
-  viewZoneImage(content) {
-    this.modalService.open(content, {windowClass: 'zone-preview-img'})
-      .result.then(res => {}).catch(err => {})
-    document.getElementsByClassName('img-modal')[0]['src'] = this.zoneImageData
+  viewImage(content, type: string) {
+    if (type === 'zone') {
+      this.modalService.open(content, {windowClass: 'event-preview-img'})
+        .result.then(res => {}).catch(err => {})
+      document.getElementsByClassName('img-modal')[0]['src'] = this.zoneImageData
+    } else if (type === 'cover') {
+      this.modalService.open(content, {windowClass: 'event-preview-img'})
+        .result.then(res => {}).catch(err => {})
+      document.getElementsByClassName('img-modal')[0]['src'] = this.coverUrl
+    }
   }
 
 }
