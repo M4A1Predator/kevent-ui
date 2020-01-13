@@ -68,9 +68,6 @@ export class EventPageComponent implements OnInit {
           this.zoneImageData = img
         })
       }, err => {})
-
-      console.log(this.event);
-      
     })
   }
 

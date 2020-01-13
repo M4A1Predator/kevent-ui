@@ -33,7 +33,9 @@
         <a>
           <i class="fas fa-shopping-cart"></i>
           &nbsp;
-          <span>30-Aug-2019 11:00</span>
+          <ng-container *ngFor="let tickSelling of event.ticketSellingList; let i = index">
+            <ng-container *ngIf="i > 0">, &nbsp;</ng-container><span>{{tickSelling.ticketStartTime | calDateFormat}}</span>
+          </ng-container>
         </a>
       </div>
       <div class="event-tags">

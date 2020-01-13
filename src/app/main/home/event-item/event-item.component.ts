@@ -31,7 +31,7 @@ export class EventItemComponent implements OnInit {
         }, false)
         f.readAsDataURL(res)
       }, err => {
-        console.error(err);
+        console.error(err)
       })
     }
 
@@ -40,8 +40,5 @@ export class EventItemComponent implements OnInit {
       const performDateM = moment(this.event.performTime)
       return performDateM.format("D-MMM-YYYY")
     })
-
-    // artists
-    this.event.eventArtistList
   }
 }
