@@ -16,7 +16,11 @@
       </a>
     </li> -->
     <li *ngFor="let item of arrayOne(pageable.totalPage); let i = index" class="page-item">
-      <a class="page-link" [ngClass]="{selected: pageable.page === i+1}" (click)="onClickLink(i + 1)">{{i + 1}}</a>
+      <!-- <a class="page-link" [ngClass]="{selected: pageable.page === i+1}" (click)="onClickLink(i + 1)">{{i + 1}}</a> -->
+      <a [ngClass]="{
+        'selected': pageable.page === i+1,
+        'page-num': pageable.page !== i+1
+      }" (click)="onClickLink(i + 1)">{{i + 1}}</a>
     </li>
   </ul>
 </nav>
