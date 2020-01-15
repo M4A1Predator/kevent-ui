@@ -26,13 +26,14 @@
       </div> -->
       <div class="event-info">
         <div>
-          <div class="location-text">
-            <span class="info-title">Location</span>
+          <div>
+            <span class="info-title">สถานที่</span>
           </div>
-          <p *ngIf="event.location; else noLocation" 
-            class="info-data"><i class="fas fa-map-marker"></i> {{event.location}}</p>
-          <ng-template #noLocation>TBA</ng-template>
+          <div *ngIf="event.location; else noLocation" 
+            class="info-data"><i class="fas fa-map-marker"></i> &nbsp;{{event.location}}</div>
+          <ng-template #noLocation><div>&nbsp;TBA</div></ng-template>
         </div>
+        <br />
         <div>
           <span class="info-title">รอบการแสดง</span>
         </div>
