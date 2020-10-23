@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 })
 export class EventPageComponent implements OnInit {
 
-  private event: EventModel = null
+  event: EventModel = null
   private coverUrl: string = null
   performDateStrs: string[] = []
   breadcumb: BreadCumbItem[] = []

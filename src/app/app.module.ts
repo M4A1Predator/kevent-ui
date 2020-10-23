@@ -28,7 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const metaReducers: MetaReducer<any>[] = [debug]
 
-const initialState = loadData()
+// const initialState = loadData()
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ const initialState = loadData()
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot(appReducer, { initialState, metaReducers }),
+    StoreModule.forRoot(appReducer, { initialState: {}, metaReducers }),
     HttpClientModule,
     NgbModule,
     FormsModule,

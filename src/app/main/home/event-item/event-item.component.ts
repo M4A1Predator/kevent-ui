@@ -23,17 +23,17 @@ export class EventItemComponent implements OnInit {
 
   ngOnInit() {
     // get cover
-    if (this.event.coverPath) {
-      this.eventsService.getCover(this.event.id).subscribe((res: Blob) => {
-        const f = new FileReader()
-        f.addEventListener("load", () => {
-          this.coverUrl = f.result
-        }, false)
-        f.readAsDataURL(res)
-      }, err => {
-        console.error(err)
-      })
-    }
+    // if (this.event.coverPath) {
+    this.eventsService.getCover(this.event.id).subscribe((res: Blob) => {
+      const f = new FileReader()
+      f.addEventListener("load", () => {
+        this.coverUrl = f.result
+      }, false)
+      f.readAsDataURL(res)
+    }, err => {
+      console.error(err)
+    })
+    // }
 
     // datetimes
     this.performDateStrs = this.event.performDateTimeList.map(p => {

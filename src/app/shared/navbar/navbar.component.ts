@@ -11,6 +11,7 @@ import { SearchParams } from 'src/app/main/models/search-params'
 export class NavbarComponent implements OnInit {
 
   keyword = ''
+  isCollapsed = true
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute) { }
