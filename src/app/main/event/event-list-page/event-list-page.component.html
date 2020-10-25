@@ -7,7 +7,7 @@
         <h1 class="title">All Events with Ketword : {{keyword}}</h1>
       </ng-template>
     </div>
-    <div class="row">
+    <div class="">
       <app-event-list [events]="events"></app-event-list>
     </div>
     <ng-template [ngIf]="keyword && (!events || !events.length)">

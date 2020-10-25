@@ -46,9 +46,9 @@ export class EventPageComponent implements OnInit {
       })
 
       // get cover
-      if (data.coverPath) {
+      // if (data.coverPath) {
         this.coverUrl = `${environment.API_URL}/events/${data.id}/cover`
-      }
+      // }
 
       // constuct breadcumb
       this.breadcumb = [

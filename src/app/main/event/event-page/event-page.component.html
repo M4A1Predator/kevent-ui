@@ -10,10 +10,10 @@
           </ng-template>
         </div>
       </div>
-      <div class="row event-name-div">
+      <div class="event-name-div">
         <h1 class="event-name-title">{{event.name}}</h1>
       </div>
-      <div class="row">
+      <div class="">
         <div *ngIf="event.eventArtistList.length; else noArtist">
           <strong>Artist<span *ngIf="event.eventArtistList.length > 1"></span></strong> : 
           <span *ngFor="let ae of event.eventArtistList" 
@@ -21,17 +21,20 @@
         </div>
         <ng-template #noArtist>TBA</ng-template>
       </div>
-      <!-- <div class="row">
-        กลับมาอีกครั้งสำหรับ TWICE Asia Tour เริ่มต้นที่ไทยเหมือนเดิม เตรียมใจเตรียมเงินกันให้พร้อม
-      </div> -->
       <div class="event-info">
-        <div>
+        <div *ngIf="!event.onlineDetail">
           <div>
             <span class="info-title">สถานที่</span>
           </div>
           <div *ngIf="event.location; else noLocation" 
             class="info-data"><i class="fas fa-map-marker"></i> &nbsp;{{event.location}}</div>
-          <ng-template #noLocation><div>&nbsp;TBA</div></ng-template>
+          <ng-template #noLocation><div *ngIf="!event.onlineDetail">&nbsp;TBA</div></ng-template>
+        </div>
+        <div *ngIf="event.onlineDetail">
+          <div>
+            <span class="info-title">Online</span>
+          </div>
+          <div class="info-data"><i class="fas fa-circle"></i> &nbsp;<span [innerHtml]="event.onlineDetail"></span></div>
         </div>
         <br />
         <div>
@@ -58,6 +61,9 @@
           <span class="info-title">Ticket Selling</span>
         </div>
         <div class="info-data">
+          <ng-template [ngIf]="!event.ticketSellingList || !event.ticketSellingList.length">
+            TBA
+          </ng-template>
           <div *ngFor="let ticketSelling of event.ticketSellingList; let i = index">
             <span>
               <i class="fas fa-shopping-cart"></i>
@@ -81,7 +87,8 @@
         </div>
         <div class="info-data">
           <a>
-            <i class="fas fa-dollar-sign"></i>&nbsp;
+            <!-- <i class="fas fa-dollar-sign"></i>&nbsp; -->
+            <strong>฿ </strong>
             <span *ngIf="event.zoneDetail; else noZoneDetail">
               {{event.zoneDetail}}
             </span>

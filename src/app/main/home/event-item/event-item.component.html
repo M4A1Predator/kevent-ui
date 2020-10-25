@@ -15,14 +15,14 @@
       <div>
         <a [routerLink]="['/events', event.id]"><h4>{{event.name}}</h4></a>
       </div>
-      <!-- <div>
-        <p>{{event.description}}</p>
-      </div> -->
       <div class="event-tags artist-badges-m">
         <a class="gadget" *ngFor="let ea of event.eventArtistList">{{ea.name}}</a>
       </div>
       <div *ngIf="event.location">
         <p class="location-text"><i class="fas fa-map-marker"></i> {{event.location}}</p>
+      </div>
+      <div *ngIf="event.onlineDetail">
+        <p class="info-text"><i class="fas fa-circle"></i> Online</p>
       </div>
       <div class="event-tags" *ngIf="performDateStrs && performDateStrs.length">
         <!-- <a class="gadget">Concert</a> -->
